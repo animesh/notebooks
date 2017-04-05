@@ -1,0 +1,10 @@
+2017-04-03 17:12:51,151 opentrons.robot.robot INFO [Line 490]     Executing: Home now
+2017-04-03 17:13:50,710 opentrons.robot.robot INFO [Line 490]     Executing: Home now
+2017-04-03 17:13:59,892 opentrons.robot.robot INFO [Line 490]     Executing: Home now
+2017-04-03 17:16:24,912 opentrons.robot.robot INFO [Line 490]     Executing: Home now
+2017-04-03 17:16:25,993 opentrons.robot.robot INFO [Line 490]     Executing: Home now
+2017-04-03 17:16:41,379 opentrons.robot.robot ERROR [Line 358]     could not open port 'COM3': PermissionError(13, 'Access is denied.', None, 5)
+2017-04-03 17:25:46,699 opentrons.robot.robot ERROR [Line 358]     could not open port 'COM3': PermissionError(13, 'Access is denied.', None, 5)
+2017-04-03 17:27:51,599 opentrons.robot.robot INFO [Line 490]     Executing: Home now
+2017-04-03 17:28:01,036 opentrons.robot.robot INFO [Line 490]     Executing: Home now
+2017-04-03 17:28:02,131 opentrons.robot.robot INFO [Line 490]     Executing: Home now
