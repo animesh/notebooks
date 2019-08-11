@@ -1,9 +1,11 @@
 #Instruction from https://apps.sigma2.no/docs/about-packages/deep-learning-tools/about.html
 #Image name from https://github.com/Uninett/helm-charts/blob/master/repos/stable/deep-learning-tools/values.yaml
-FROM    quay.io/uninett/deep-learning-tools:20181129-30925cb
+FROM    quay.io/uninett/deep-learning-tools:20190628-fafa7e0
 # Install system packages
 USER    root
-RUN     apt-get update && apt-get install -y apt-utils vim psmisc openssh-server libopenmpi-dev git-core gcc   build-essential golang-go  libxml2-dev libcurl4-openssl-dev libssl-dev ffmpeg r-base-dev r-cran-rcpp
+RUN     apt-get update && apt-get install -y apt-utils vim psmisc openssh-server libopenmpi-dev git-core gcc   build-essential golang-go  libxml2-dev libcurl4-openssl-dev libssl-dev ffmpeg r-base-dev r-cran-rcpp parallel default-jdk ant clang zsh tmux autojump jq 
+RUN 	apt-get  -y autoremove
+RUN 	apt-get  -y clean
 #pup update
 RUN     pip install --upgrade pip
 # install mono
