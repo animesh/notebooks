@@ -23,7 +23,8 @@ RUN     apt-get  -y autoremove
 RUN     apt-get  -y clean
 #docker run -it --privileged <docker-id> /bin/bash
 # Install other packages
-USER    notebook
+#USER    notebook
+RUN     pip install numba
 RUN     pip install pyro-ppl
 RUN     pip install altair
 RUN     pip install catboost
@@ -33,5 +34,6 @@ RUN     pip install ipywidgets
 RUN     pip install ipyvolume
 RUN     pip install UMAP
 RUN     pip install fastai
-RUN     pip install numba
-
+RUN R -e "install.packages('randomForestExplainer',dependencies=TRUE)"
+RUN R -e "install.packages('rfVarImpOOB',dependencies=TRUE)"
+RUN R -e "install.packages('jsonlite',dependencies=TRUE, repos='http://cran.rstudio.com/')"
