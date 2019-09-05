@@ -3,9 +3,9 @@
 FROM    quay.io/uninett/deep-learning-tools:20190821-df15ac1
 # Install system packages
 USER    root
-RUN apt-get update && apt-get install -y apt-utils vim psmisc openssh-server git-core libpython-dev libblocksruntime-dev python3-pip zsh tmux autojump jq parallel libomp-dev libopenblas-base libsndfile1 default-jdk zlib1g-dev python3-setuptools apt-utils libcurl4-openssl-dev libxml2-dev
+RUN apt-get update && apt-get install -y apt-utils vim psmisc openssh-server git-core libpython-dev libblocksruntime-dev python3-pip zsh tmux autojump jq parallel libomp-dev libopenblas-base libsndfile1 default-jdk zlib1g-dev python3-setuptools apt-utils libcurl4-openssl-dev libxml2-dev libxrender1 libxext6 python-rdkit librdkit1 rdkit-data
 RUN pip install --upgrade pip ipywidgets pandas
-RUN pip install ipyvolume modin pymagnitude librosa colorama faiss-gpu ann-solo scipy vaex bqplot pythreejs numba pyro-ppl altair catboost rfpimp UMAP shapely descartes nxpd pystan matplotlib_venn 
+RUN pip install ipyvolume modin pymagnitude librosa colorama faiss-gpu ann-solo scipy vaex bqplot pythreejs numba pyro-ppl altair catboost rfpimp UMAP shapely descartes nxpd pystan matplotlib_venn molsets 
 RUN jupyter labextension install jupyterlab-datawidgets
 RUN jupyter nbextension install --py --symlink --sys-prefix pythreejs
 RUN jupyter nbextension enable --py --sys-prefix pythreejs
@@ -32,6 +32,8 @@ RUN R -e "install.packages('rfVarImpOOB',dependencies=TRUE,repos='http://cran.us
 RUN R -e "install.packages('SparseM',dependencies=TRUE,repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages('BiocManager',dependencies=TRUE,repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages('mice',dependencies=TRUE,repos='http://cran.us.r-project.org')"
+RUN R -e "install.packages('lme4',dependencies=TRUE,repos='http://cran.us.r-project.org')"
+RUN R -e "install.packages('gganimate',dependencies=TRUE,repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages('reticulate',INSTALL_opts = '--no-multiarch',dependencies=TRUE,repos='http://cran.us.r-project.org')"
 RUN R -e "BiocManager::install('RBGL')"
 RUN R -e "BiocManager::install('graph')"
@@ -41,6 +43,7 @@ RUN R -e "BiocManager::install('eulerr')"
 RUN R -e "BiocManager::install('DEqMS')"
 RUN R -e "BiocManager::install('ROTS')"
 RUN R -e "BiocManager::install('sva')"
+RUN R -e "BiocManager::install('mixOmics')"
 RUN R -e "install.packages('jsonlite',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 #winpty docker run -it --privileged <docker-id>  bash
 
