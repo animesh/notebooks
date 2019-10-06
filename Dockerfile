@@ -1,13 +1,12 @@
-#Instruction from https://apps.sigma2.no/docs/custom-docker-image.html
 #Image name from https://github.com/Uninett/helm-charts/blob/master/repos/stable/deep-learning-tools/values.yaml
-FROM    quay.io/uninett/deep-learning-tools:20190821-df15ac1
+FROM quay.io/uninett/deep-learning-tools:20190821-df15ac1
 # Install system packages
-USER    root
-RUN apt-get update && apt-get install -y apt-utils vim psmisc openssh-server git-core libpython-dev libblocksruntime-dev python3-pip zsh tmux autojump jq parallel libomp-dev libopenblas-base libsndfile1 default-jdk zlib1g-dev python3-setuptools apt-utils libcurl4-openssl-dev libxml2-dev libxrender1 libxext6
-#RUN conda update -n base conda
+USER root
+RUN apt-get update && apt-get install -y apt-utils vim psmisc openssh-server git-core libpython-dev libblocksruntime-dev python3-pip zsh tmux autojump jq parallel libomp-dev libopenblas-base libsndfile1 default-jdk zlib1g-dev python3-setuptools apt-utils libcurl4-openssl-dev libxml2-dev libxrender1 libxext6 openjdk-8-jdk
+RUN conda update -n base conda
 #RUN conda install -c conda-forge rdkit --yes
 RUN pip install --upgrade pip ipywidgets pandas
-RUN pip install ipyvolume modin pymagnitude librosa colorama faiss-gpu ann-solo scipy vaex bqplot pythreejs numba pyro-ppl altair catboost rfpimp UMAP shapely descartes nxpd pystan matplotlib_venn molsets 
+RUN pip install ipyvolume modin pymagnitude librosa colorama faiss-gpu ann-solo scipy vaex bqplot pythreejs numba pyro-ppl altair catboost rfpimp UMAP shapely descartes nxpd pystan matplotlib_venn molsets  sigopt
 RUN jupyter labextension install jupyterlab-datawidgets
 RUN jupyter nbextension install --py --symlink --sys-prefix pythreejs
 RUN jupyter nbextension enable --py --sys-prefix pythreejs
@@ -19,11 +18,6 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E03280
 RUN apt-get install -y apt-transport-https
 RUN echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | tee /etc/apt/sources.list.d/mono-official-stable.list
 RUN apt-get update && apt-get install -y mono-devel
-# install gcloud https://github.com/google/deepvariant/blob/r0.8/docs/deepvariant-quick-start.md from https://github.com/google/deepvariant/blob/r0.6/docs/deepvariant-quick-start.md , skipping https://github.com/google/deepvariant/blob/r0.7/docs/deepvariant-quick-start.md
-RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-RUN apt-get install -y apt-transport-https ca-certificates
-RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
-RUN apt-get update && apt-get install -y google-cloud-sdk
 #packages for R
 RUN R -e "update.packages(ask = FALSE,repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages('multivariance',dependencies=TRUE,repos='http://cran.us.r-project.org')"
