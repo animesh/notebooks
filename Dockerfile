@@ -30,7 +30,7 @@ RUN R -e "install.packages('BiocManager',dependencies=TRUE,repos='http://cran.us
 RUN R -e "install.packages('mice',dependencies=TRUE,repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages('lme4',dependencies=TRUE,repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages('gganimate',dependencies=TRUE,repos='http://cran.us.r-project.org')"
-RUN R -e "install.packages('reticulate',INSTALL_opts = '--no-multiarch',dependencies=TRUE,repos='http://cran.us.r-project.org')"
+#RUN R -e "install.packages('reticulate',INSTALL_opts = '--no-multiarch',dependencies=TRUE,repos='http://cran.us.r-project.org')"
 RUN R -e "BiocManager::install('RBGL')"
 RUN R -e "BiocManager::install('graph')"
 RUN R -e "BiocManager::install('clusterProfiler')"
@@ -40,7 +40,7 @@ RUN R -e "BiocManager::install('DEqMS')"
 RUN R -e "BiocManager::install('ROTS')"
 #RUN R -e "BiocManager::install('sva')"
 RUN R -e "BiocManager::install('mixOmics')"
-RUN R -e "install.packages('jsonlite',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+#RUN R -e "install.packages('jsonlite',dependencies=TRUE, repos='http://cran.rstudio.com/')"
 #winpty docker run -it --privileged <docker-id>  bash
 
 
