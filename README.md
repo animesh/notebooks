@@ -1,3 +1,4 @@
+#  git reset HEAD~ 
 #[dockerImage](https://github.com/animesh/notebooks/blob/master/Dockerfile):
 # docker.io/animesh1977/notebooks
 #ignore MS/DOS endings (on windows machines):
