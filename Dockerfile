@@ -3,12 +3,16 @@ FROM quay.io/uninett/deep-learning-tools:20200421-877c95d
 # Install system packages
 USER root
 RUN apt-get update && apt-get install -y apt-utils vim psmisc openssh-server git-core libpython-dev libblocksruntime-dev python3-pip zsh tmux autojump jq parallel libomp-dev libopenblas-base libsndfile1 default-jdk zlib1g-dev python3-setuptools apt-utils libcurl4-openssl-dev libxml2-dev libxrender1 libxext6 openjdk-8-jdk liblapack-dev libblas-dev
+#debugger https://github.com/jupyterlab/debugger
 #RUN conda update -n base conda
 #RUN conda install -c conda-forge rdkit --yes
-RUN conda install xeus-python -c conda-forge
-RUN pip install --upgrade pip 
-RUN pip install jupyterlab --upgrade
+RUN conda conda install -c conda-forge xeus-python=0.8.0 notebook=6 jupyterlab=2 ptvsd nodejs
 RUN jupyter labextension install @jupyterlab/debugger
+RUN jupyter labextension install jupyterlab-kernelspy
+RUN jupyter labextension install @lckr/jupyterlab_variableinspector
+#pip update
+RUN pip install --upgrade pip
+RUN pip install jupyterlab --upgrade
 RUN pip install ipyvolume modin pymagnitude librosa colorama faiss-gpu ann-solo scipy vaex bqplot pythreejs numba pyro-ppl altair catboost rfpimp UMAP shapely descartes nxpd pystan matplotlib_venn molsets  sigopt ipywidgets pandas
 RUN jupyter labextension install jupyterlab-datawidgets
 RUN jupyter nbextension install --py --symlink --sys-prefix pythreejs
@@ -33,8 +37,10 @@ RUN R -e "install.packages('BiocManager',dependencies=TRUE,repos='http://cran.us
 RUN R -e "install.packages('mice',dependencies=TRUE,repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages('lme4',dependencies=TRUE,repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages('lavaan',dependencies=TRUE,repos='http://cran.us.r-project.org')"
+RUN R -e "install.packages('readxl',dependencies=TRUE,repos='http://cran.us.r-project.org')"
+RUN R -e "install.packages('writexl',dependencies=TRUE,repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages('mclust',INSTALL_opts = '--no-multiarch',dependencies=TRUE,repos='http://cran.us.r-project.org')"
-RUN R -e "BiocManager::install('rWikiPathways')"
+RUN R -e "BiocManager::install('STRINGdb')"
 RUN R -e "BiocManager::install('graph')"
 RUN R -e "BiocManager::install('clusterProfiler')"
 RUN R -e "BiocManager::install('pheatmap')"
@@ -43,5 +49,3 @@ RUN R -e "BiocManager::install('DEqMS')"
 RUN R -e "BiocManager::install('ROTS')"
 RUN R -e "BiocManager::install('org.Hs.eg.db')"
 RUN R -e "BiocManager::install('mixOmics')"
-
-
