@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y vim psmisc openssh-server parallel defa
 #RUN pip install ipyvolume #faiss-gpu ann-solo scipy vaex bqplot pythreejs numba pyro-ppl altair catboost rfpimp UMAP shapely descartes nxpd pystan matplotlib_venn molsets  sigopt ipywidgets pandas
 #debugger https://github.com/jupyterlab/debugger
 #RUN jupyter labextension install jupyterlab-kernelspy jupyterlab-datawidgets @jupyterlab/debugger @lckr/jupyterlab_variableinspector
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 ##RUN jupyter nbextension install --py --symlink --sys-prefix pythreejs
 ##RUN jupyter nbextension enable --py --sys-prefix pythreejs ipyvolume widgetsnbextension
 #RUN jupyter lab build
