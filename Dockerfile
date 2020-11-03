@@ -28,6 +28,12 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E03280
 RUN apt-get install -y apt-transport-https
 RUN echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | tee /etc/apt/sources.list.d/mono-official-stable.list
 RUN apt-get update && apt-get install -y mono-devel
+# cat /etc/os-release
+# https://docs.microsoft.com/en-in/dotnet/core/install/linux-ubuntu#1804-
+RUN wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+RUN dpkg -i packages-microsoft-prod.deb
+RUN apt-get update
+RUN apt-get install -y dotnet-sdk-3.1
 #packages for R
 #RUN R -e "update.packages(ask = FALSE,repos='http://cran.us.r-project.org')"
 RUN R -e "install.packages(c('devtools','BiocManager','readxl','writexl','ggplot2','svglite','scales'),dependencies=TRUE,repos='https://cloud.r-project.org/',ask=FALSE,INSTALL_opts = '--no-multiarch')"
