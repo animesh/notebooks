@@ -36,6 +36,7 @@ RUN apt-get update
 RUN apt-get install -y dotnet-sdk-3.1
 #packages for R
 #RUN R -e "update.packages(ask = FALSE,repos='http://cran.us.r-project.org')"
-RUN R -e "install.packages(c('devtools','BiocManager','readxl','writexl','ggplot2','svglite','scales'),dependencies=TRUE,repos='https://cloud.r-project.org/',ask=FALSE,INSTALL_opts = '--no-multiarch')"
 RUN R -e "devtools::install_github('bartongroup/Proteus', build_opts= c('--no-resave-data', '--no-manual'), build_vignettes=F)"
+RUN R -e "install.packages(c('devtools','BiocManager'),dependencies=TRUE,repos='https://cloud.r-project.org/',ask=FALSE,INSTALL_opts = '--no-multiarch')"
+#RUN R -e "install.packages(c('readxl','writexl','ggplot2','svglite','scales'),dependencies=TRUE,repos='https://cloud.r-project.org/',ask=FALSE,INSTALL_opts = '--no-multiarch')"
 RUN R -e "BiocManager::install(c('pheatmap','limma','org.Hs.eg.db'))"
