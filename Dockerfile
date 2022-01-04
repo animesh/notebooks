@@ -2,11 +2,12 @@
 # move into the cloned directory: cd notebooks
 # get latest image tag from https://quay.io/repository/uninett/deep-learning-tools?tab=tags
 FROM quay.io/uninett/deep-learning-tools:20210518-96a1f3f
-# create image with CMD:  docker build .
+# create image with CMD:  docker build --no-cache .
 # list:	docker image ls
 # bash:	docker run -it --privileged a589bca576b7 /bin/bash
-# tag:	docker tag a589bca576b7 animesh1977/notebooks
+# tag:	docker tag 5c29b3a5a392 animesh1977/notebooks
 # load:	docker push animesh1977/notebooks
+# latest: digest: sha256:3dd9f1e8c76d8ae37bee94516fc3d7d62d479904a73d1ccd59b6caf6bcb150da size: 15423
 # Install system packages
 USER root
 RUN apt-get update && apt-get install -y vim psmisc openssh-server parallel
@@ -26,7 +27,7 @@ RUN apt-get update
 RUN apt-get install -y dotnet-sdk-3.1
 # pip pkgs
 RUN pip install --upgrade pip
-RUN pip install tensorflow_decision_forests
+#RUN pip install tensorflow_decision_forests
 RUN pip install ipyvolume
 RUN jupyter nbextension enable --py --sys-prefix ipyvolume
 #RUN jupyter lab build
@@ -37,7 +38,7 @@ RUN R -e "install.packages(c('devtools','BiocManager'),dependencies=TRUE,repos='
 RUN R -e "install.packages(c('readxl','writexl','ggplot2','svglite','scales'),dependencies=TRUE,repos='https://cloud.r-project.org/',ask=FALSE,INSTALL_opts = '--no-multiarch')"
 RUN R -e "BiocManager::install(c('pheatmap','limma','org.Hs.eg.db'))"
 #bazel
-RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg
-RUN mv bazel.gpg /etc/apt/trusted.gpg.d/
-RUN echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
-RUN apt-get update && apt-get install -y bazel
+#RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg
+#RUN mv bazel.gpg /etc/apt/trusted.gpg.d/
+#RUN echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+#RUN apt-get update && apt-get install -y bazel
